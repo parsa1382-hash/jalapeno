@@ -1,0 +1,27 @@
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Home</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}">
+</head>
+<body>
+	<div class="rooms">
+		{% if room1 == True %}
+			<a href="{% url 'base:test' %}">parsaishash</a>
+		{% endif %}
+
+		{% if room2 == True %}
+			<a href="https://meet.jit.si/test2">test2</a>
+		{% endif %}
+		
+		{% if room3 == True %}
+			<a href="https://meet.jit.si/test3">test3</a>
+		{% endif %}
+
+	</div>
+</body>
+</html>

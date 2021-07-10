@@ -1,0 +1,34 @@
+.log {
+  padding: 20px;
+  top: 50px;
+}
+
+.log-form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.log input {
+	border-radius: 5px;
+	border: 2px solid green;
+}
+
+.rooms {
+	display: grid;
+	justify-content: space-between; 
+	grid-template-columns: 50% 50%;
+}
+
+.rooms a {
+	border: 2px solid green;
+	padding: 5px;
+	margin: 10px;
+	position: relative;
+	border-radius: 8px;
+}
+
+hr {
+	background-color: green;
+	color: green;
+}
