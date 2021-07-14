@@ -54,7 +54,9 @@ def welcome(request):
 	else:
 		return render(request, 'base/login.html')
 
-
+def room(request, room_id):
+	room = get_object_or_404(Room, pk=room_id)
+	return render(request, 'base/room.html', {'room': room})
 
 
 def room1(request):

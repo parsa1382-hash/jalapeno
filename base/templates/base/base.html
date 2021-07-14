@@ -24,8 +24,7 @@
 			you are not allowed
 		{% else %}
 			{% for room in rooms %}
-				<a href="{% url 'base:room1' %}"><div class="alert alert-success">{{ room }}</div></a>
-				
+				<a class="room" href="{% url 'base:room' room.id %}">{{ room }}</a>
 				<hr>
 			{% endfor %}
 		{% endif %}
