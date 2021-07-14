@@ -8,15 +8,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from .models import Room
 
-users = [
-{'username': 'p.amini', 'password': '1234', 'room1': True, 'room2': True, 'room3': True},
-{'username': 'a.radani', 'password': '1234', 'room1': True, 'room2': True, 'room3': True},
-{'username': 'm.mokaram', 'password': '1234', 'room1': True, 'room2': True, 'room3': True},
-]
 
-check = []
-for user in users:
-	check.append({'username': user.get('username'), 'password': user.get('password')})
+
 
 def login(request):
 	return render(request, 'base/login.html')

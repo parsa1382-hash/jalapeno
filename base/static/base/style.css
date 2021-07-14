@@ -25,17 +25,18 @@
 	outline: 0;
 	border: 1px solid rgba(34,36,38,.15);
 	border-radius: .30769231rem;
-	padding: 8px;
+	padding: 5px;
 	width: 100%;
-	margin-bottom: -14px;
+	margin-bottom: -18px;
+	text-align: center;
 }
 
 .submit {
-	margin-top: 20px;
+	margin-top: 15px;
 	background-color: rgb(0, 168, 214);
 	color: white;
 	width: 100%;
-	padding: 8px;
+	padding: 5px;
 	border-radius: .30769231rem;
 	border: 1px solid rgba(34,36,38,.15);
 }

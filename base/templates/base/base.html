@@ -25,7 +25,7 @@
 		{% else %}
 			{% for room in rooms %}
 				<a class="room" href="{% url 'base:room' room.id %}">{{ room }}</a>
-				<hr>
+				<br>
 			{% endfor %}
 		{% endif %}
 		
