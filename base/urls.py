@@ -8,5 +8,7 @@ app_name = 'base'
 urlpatterns = [
 	path('', views.login, name='login'),
 	path('welcome/', views.welcome, name='welcome'),
-	path('test', views.test, name='test'),
+	path('room1', views.room1, name='room1'),
+	path('room2', views.room2, name='room2'),
+	path('room3', views.room3, name='room3'),
 ]

@@ -8,20 +8,9 @@
 	<meta charset="utf-8">
 	<title>Login</title>
 </head>
-<body>
-	<style type="text/css">
-		body {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			top: 30px;
-			background: center;
-			background-color: rgb(230, 230, 230);
-		}
-	</style>
+<body class="body-login">
 	<div class="log">
-		<div>
-		<img src="{% static 'base/jalapenos.png' %}" width="500px"></div>
+		<div><img src="{% static 'base/jalapenos.png' %}" width="500px"></div>
 		<br>
 		<div class="log-form">
 	    	<form action="{% url 'base:welcome' %}" method="post">
@@ -33,10 +22,11 @@
 				<br>
 				<br>
 
-	    		<input type="submit" value="Login">
+	    		<button class="submit" type="submit" value="Login">Login</button>
 
 	    	</form>
 	    </div>
+
 	</div>
 
 </body>

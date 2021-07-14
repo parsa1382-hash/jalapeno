@@ -1,34 +1,61 @@
 .log {
   padding: 20px;
-  top: 50px;
+  margin: auto;
+  background-color: rgb(240, 244, 247);
+  top: 20%;
+}
+
+
+.body-login {
+	display: flex;
+	align-items: center;
+	top: 30px;
+	background: center;
+	background-color: rgb(240, 244, 247);
 }
 
 .log-form {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 10px;
 }
 
-.log input {
-	border-radius: 5px;
-	border: 2px solid green;
+.log-form input {
+	outline: 0;
+	border: 1px solid rgba(34,36,38,.15);
+	border-radius: .30769231rem;
+	padding: 8px;
+	width: 100%;
+	margin-bottom: -14px;
+}
+
+.submit {
+	margin-top: 20px;
+	background-color: rgb(0, 168, 214);
+	color: white;
+	width: 100%;
+	padding: 8px;
+	border-radius: .30769231rem;
+	border: 1px solid rgba(34,36,38,.15);
 }
 
 .rooms {
-	display: grid;
-	justify-content: space-between; 
-	grid-template-columns: 50% 50%;
+	margin: 3px;
 }
 
-.rooms a {
-	border: 2px solid green;
-	padding: 5px;
-	margin: 10px;
-	position: relative;
-	border-radius: 8px;
+.rooms h3 {
+	color: rgb(96, 163, 50);
 }
 
-hr {
-	background-color: green;
-	color: green;
+.room {
+	box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+	border: 1px solid rgba(34,36,38,.15);
+	background-color: rgb(240, 244, 247);
+	border-radius: .50769231rem;
+	display: block;
+	text-decoration: none;
+	padding: 10px 10px;
+	width: 100%;
+	
 }

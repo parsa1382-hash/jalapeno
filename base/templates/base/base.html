@@ -9,19 +9,28 @@
     <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}">
 </head>
 <body>
-	<div class="rooms">
-		{% if room1 == True %}
-			<a href="{% url 'base:test' %}">parsaishash</a>
-		{% endif %}
+	<style type="text/css">
+		body {
+			margin: 10%;
+			margin-top: 10%;
+		}
+	</style>
 
-		{% if room2 == True %}
-			<a href="https://meet.jit.si/test2">test2</a>
+	<div class="rooms">
+		<h3>Welcome to Jalapenos</h3><br>
+		
+
+		{% if rooms == "not_allowed" %}
+			you are not allowed
+		{% else %}
+			{% for room in rooms %}
+				<a href="{% url 'base:room1' %}"><div class="alert alert-success">{{ room }}</div></a>
+				
+				<hr>
+			{% endfor %}
 		{% endif %}
 		
-		{% if room3 == True %}
-			<a href="https://meet.jit.si/test3">test3</a>
-		{% endif %}
-
+		
 	</div>
 </body>
 </html>
