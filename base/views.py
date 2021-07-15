@@ -6,7 +6,7 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from .models import Room
+from .models import Room, Group
 
 
 
@@ -27,14 +27,26 @@ def welcome(request):
 
 			allowed_room = []
 			for room in rooms:
+
 				if room.release:
 					for us in room.users.all():
-						print(type(get_object_or_404(User, pk=us.id)))
 
 						if str(get_object_or_404(User, pk=us.id)) == user.username:
 							allowed_room.append(room)
+
+					for group in room.groups.all():
+						for us in group.members.all():
+
+							if str(get_object_or_404(User, pk=us.id)) == user.username:
+								if room in allowed_room:
+									pass
+
+								else:
+									allowed_room.append(room)
+
 			if allowed_room == []:
 				allowed_room = "not_allowed"
+
 
 			context = {
 				'rooms': allowed_room,
@@ -47,18 +59,12 @@ def welcome(request):
 	else:
 		return render(request, 'base/login.html')
 
+
 def room(request, room_id):
-	room = get_object_or_404(Room, pk=room_id)
-	return render(request, 'base/room.html', {'room': room})
-
-
-def room1(request):
-	return render(request, 'base/room1.html')
-def room2(request):
-	return render(request, 'base/room2.html')
-def room3(request):
 	if request.user.is_authenticated:
-		return render(request, 'base/room3.html')
+		room = get_object_or_404(Room, pk=room_id)
+		return render(request, 'base/room.html', {'room': room})
 	else:
-		return HttpResponse("NO")
+		return render(request, 'base/login.html')
+
 # Create your views here.
