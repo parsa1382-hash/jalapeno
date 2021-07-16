@@ -32,7 +32,7 @@
 
 						{% if room.release %}
 							<div class="room">
-								<a href="{{ room.url }}">{{ room }}</a>
+								<a href="{% url 'base:room' room.id %}">{{ room }}</a>
 								
 									<div class="form-check form-switch t">
 									  <input onclick="test(room = '{{ room.id }}');" value="{{ room }}" for="{{ room.id }}" name="check" class="form-check-input" type="checkbox" checked>
@@ -46,7 +46,7 @@
 
 
 						{% else %}
-							<div class="room"><a href="{{ room.url }}">{{ room }}</a>
+							<div class="room"><a href="{% url 'base:room' room.id %}">{{ room }}</a>
 								<!--
 								<div class="t">
 									<a class="btn btn-success" href="{% url 'base:change_release' room.id %}">on</a>
