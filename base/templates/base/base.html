@@ -7,6 +7,10 @@
 	<title>Home</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}">
+    <script src="{% static 'base/script.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </head>
 <body>
 	<a href="{% url 'logout' %}">logout</a>
@@ -14,6 +18,7 @@
 		
 		<div class="rooms">
 			<h3>Welcome to Jalapenos</h3><br>
+
 			
 
 			{% if rooms == "not_allowed" %}
@@ -28,16 +33,27 @@
 						{% if room.release %}
 							<div class="room">
 								<a href="{% url 'base:room' room.id %}">{{ room }}</a>
+								<form action="{% url 'base:change_release' room.id %}" class="form-check form-switch t" name="form-test">
+									<div>
+									  <input onclick="test(room = '{{ room.id }}');" value="{{ room }}" for="{{ room.id }}" name="check" class="form-check-input" type="checkbox" checked>
+									</div>
+								</form>
+								
+								<!--
 								<div class="t">
 									<a class="btn btn-danger" href="{% url 'base:change_release' room.id %}">off</a>
-								</div>
+								</div>-->
 							</div>
 
 
 						{% else %}
 							<div class="room"><a href="{% url 'base:room' room.id %}">{{ room }}</a>
+								<!--
 								<div class="t">
 									<a class="btn btn-success" href="{% url 'base:change_release' room.id %}">on</a>
+								</div>-->
+								<div class="form-check form-switch t">
+								  <input onclick="test(room = '{{ room.id }}');" value="{{ room }}" for="{{ room.id }}" id="{{ room.id }}" class="form-check-input" type="checkbox">
 								</div>
 							</div>
 

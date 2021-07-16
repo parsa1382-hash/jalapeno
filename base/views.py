@@ -30,6 +30,10 @@ def check(request):
 
 
 def home(request):
+	if request.method == 'POST':
+			release = request.POST[1]
+			print(release)
+
 	if request.user.is_authenticated:
 
 		rooms = Room.objects.all()
@@ -81,17 +85,41 @@ def room(request, room_id):
 def change_release(request, room_id):
 	if request.user.is_authenticated:
 		room = get_object_or_404(Room, pk=room_id)
-		print(room)
+		release = request.POST.getlist('change')
+		print(release)
+
 		if room.release:
 			room.release = False
 			room.save()
+
 		else:
 			room.release = True
 			room.save()
+
 		return redirect('base:home')
 	else:
+
 		return render(request, 'base/login.html')
 
+def test(request):
+	print("hi")
+	if request.user.is_authenticated:
+		room = get_object_or_404(Room, pk=room_id)
+		release = request.POST.getlist('change')
+		print(release)
 
+		if room.release:
+			room.release = False
+			room.save()
+
+		else:
+			room.release = True
+			room.save()
+
+		return redirect('base:home')
+	else:
+
+		return render(request, 'base/login.html')
+	return HttpResponse("hi")
 
 # Create your views here.
