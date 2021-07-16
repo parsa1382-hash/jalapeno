@@ -59,3 +59,13 @@
 	width: 100%;
 	font-size: 18px;
 }
+
+.t {
+	overflow: hidden;
+	float: right;
+}
+
+.btn {
+	display: block;
+	align-items: center;
+}

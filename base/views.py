@@ -11,10 +11,10 @@ from .models import Room, Group
 
 
 
-def login(request):
+def login_view(request):
 	return render(request, 'base/login.html')
 
-def welcome(request):
+def check(request):
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
@@ -22,12 +22,25 @@ def welcome(request):
 		user = authenticate(request, username=username, password=password)
 
 		if user is not None:
-			rooms = Room.objects.all()
-			
+			login(request, user)
+			return redirect('base:home')
+		else:
+			messages.add_message(request, messages.INFO, 'Bad Username/Password')
+			return redirect('base:login_view')
 
-			allowed_room = []
-			for room in rooms:
 
+def home(request):
+	if request.user.is_authenticated:
+
+		rooms = Room.objects.all()
+		allowed_room = []
+		user = request.user
+
+		for room in rooms:
+			if user.is_superuser:
+				allowed_room.append(room)
+
+			else:
 				if room.release:
 					for us in room.users.all():
 
@@ -44,20 +57,18 @@ def welcome(request):
 								else:
 									allowed_room.append(room)
 
-			if allowed_room == []:
-				allowed_room = "not_allowed"
+		if allowed_room == []:
+			allowed_room = "not_allowed"
 
 
-			context = {
-				'rooms': allowed_room,
-				'user': user,
-			}
-			return render(request, 'base/base.html', context)
-
-		else:
-			return redirect('base:login')
+		context = {
+			'rooms': allowed_room,
+			'user':user,
+		}
+		return render(request, 'base/base.html', context)
 	else:
-		return render(request, 'base/login.html')
+		return redirect('base:login_view')
+
 
 
 def room(request, room_id):
@@ -66,5 +77,21 @@ def room(request, room_id):
 		return render(request, 'base/room.html', {'room': room})
 	else:
 		return render(request, 'base/login.html')
+
+def change_release(request, room_id):
+	if request.user.is_authenticated:
+		room = get_object_or_404(Room, pk=room_id)
+		print(room)
+		if room.release:
+			room.release = False
+			room.save()
+		else:
+			room.release = True
+			room.save()
+		return redirect('base:home')
+	else:
+		return render(request, 'base/login.html')
+
+
 
 # Create your views here.

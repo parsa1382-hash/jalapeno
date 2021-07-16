@@ -13,8 +13,13 @@
 		<div><img src="{% static 'base/jalapenos.png' %}" width="500px"></div>
 		<br>
 		<div class="log-form">
-	    	<form action="{% url 'base:welcome' %}" method="post">
+	    	<form action="{% url 'base:check' %}" method="post">
 	    		{% csrf_token %}
+	    		{% if messages %}
+					{% for message in messages %}
+						<div class="alert alert-danger">{{ message }}</div>
+					{% endfor %}
+				{% endif %}
 	    		<input type="username" placeholder="Username" name="username">
 	    		<br>
 	    		<br>
