@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src='https://8x8.vc/external_api.js' async></script>
-    <style>html, body, #jaas-container { height: 100%; }</style>
-    <title>{{ room.name }}</title>
-  </head>
 
-  <body><div id="jaas-container" />
-  <iframe allow="camera; microphone; display-capture; autoplay; clipboard-write" src="{{ room.url }}" name="jitsiConferenceFrame2" id="jitsiConferenceFrame2" allowfullscreen="true" style="height: 100%; width: 100%; border: 0px;"></iframe></body>
-</html>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <script src='https://8x8.vc/external_api.js' async></script>
+        <style>html, body, #jaas-container { height: 100%; }</style>
+        <script type="text/javascript">
+          window.onload = () => {
+            const api = new JitsiMeetExternalAPI("8x8.vc", {
+              roomName: "vpaas-magic-cookie-e4472b0176804e4d8c47ff76eb42d944/SampleAppPotentialBonesConstituteMeanwhile",
+              parentNode: document.querySelector('#jaas-container'),
+              jwt: "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtZTQ0NzJiMDE3NjgwNGU0ZDhjNDdmZjc2ZWI0MmQ5NDQvZmJjZmQ4LVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImV4cCI6MTYyNjQ0Nzg3OCwibmJmIjoxNjI2NDQwNjczLCJpc3MiOiJjaGF0Iiwicm9vbSI6IioiLCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtZTQ0NzJiMDE3NjgwNGU0ZDhjNDdmZjc2ZWI0MmQ5NDQiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOmZhbHNlLCJvdXRib3VuZC1jYWxsIjpmYWxzZSwic2lwLW91dGJvdW5kLWNhbGwiOmZhbHNlLCJ0cmFuc2NyaXB0aW9uIjpmYWxzZSwicmVjb3JkaW5nIjpmYWxzZX0sInVzZXIiOnsibW9kZXJhdG9yIjp0cnVlLCJuYW1lIjoiVGVzdCBVc2VyIiwiaWQiOiJnb29nbGUtb2F1dGgyfDEwNDI0NjE4NjY5NDUyMjQ4NzE2NiIsImF2YXRhciI6IiIsImVtYWlsIjoidGVzdC51c2VyQGNvbXBhbnkuY29tIn19fQ.E1SPF6wRgk_zXxhK4Lg22Abd6Hdx_Xzh44Cp2_H4G6I1z1Aun2So299wdoY68Ti0gF-UdZGSBIbZ0nSlUwjTRSp4orn5ISzdMR2mSv-0R_pheFned4p0NM_PgkyF5SS2sYbhJnEilRLLj9ZILW-nkZGqECbwYSOsYmyqXDtCgK1L7HeAAvpWx0AQzI_JAO_iW8ig6Lt0YetpaC0Wz9czdUqxjFRjt-vUrYrmtN6a1M5QF3yhT6owa0hHPaZ5nG9Tc1zXo7zztuHT8KlSwT6iVgEPESIPZLCRCjXXPZLnVbi5VuFLLd3OUYLZm-1oE2UiR6-_naLemuqgn5GeU_MRVw"
+            });
+          }
+        </script>
+      </head>
+      <body><div id="jaas-container" /></body>
+    </html>
+  
