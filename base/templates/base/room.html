@@ -1,68 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src='https://8x8.vc/external_api.js' async></script>
-    <style>html, body, #jaas-container { height: 100%; }</style>
-    <title>{{ room.name }}</title>
-    <script>
-      document.title = "8x8 Jitsi as a Service"
-      const link = document.createElement('link');
-      link.rel = 'shortcut icon';
-      link.href = 'https://vo-cdn.8x8.vc/static/jaas-logo.ico';
-      document.getElementsByTagName('head')[0].appendChild(link)
 
-      const COMPONENT_URL = "https://meet-config.jitsi.net/prod"
-      const LOGIN_URL = ''
-      const STATUS_URL = ''
-
-      const container = document.querySelector('#container')
-      const loadFailed = container.querySelector('#loadFailed')
-      const renderFailed = container.querySelector('#renderFailed')
-      const success = container.querySelector('#success')
-
-      const activate = el => el.style.zIndex = 1
-
-      const loadComponent = () => new Promise((resolve, reject) => {
-        const script = Object.assign(document.createElement('script'), {
-          async: true,
-          onerror: reject,
-          onload: resolve,
-          src: COMPONENT_URL
-        })
-        document.head.appendChild(script)
-      })
-
-      const redirect = url => window.location.href = url
-
-      const redirectToLogin = () => fetch(LOGIN_URL)
-        .then(res => res.json())
-        .then(res => res.url )
-        .then(redirect)
-
-      const renderComponent = () => window.EghtMeetings.renderAt(success, {
-        errorContainerSelector: '#error-container',
-        onAfterResponseReceived: res => {
-          if (res.status === 401) {
-            window.location = '/logout'
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <script src='https://8x8.vc/external_api.js' async></script>
+        <style>html, body, #jaas-container { height: 100%; }</style>
+        <script type="text/javascript">
+          window.onload = () => {
+            const api = new JitsiMeetExternalAPI("8x8.vc", {
+              roomName: "vpaas-magic-cookie-e4472b0176804e4d8c47ff76eb42d944/SampleAppPlasticWeightsCycleTypically",
+              parentNode: document.querySelector('#jaas-container'),
+              jwt: "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtZTQ0NzJiMDE3NjgwNGU0ZDhjNDdmZjc2ZWI0MmQ5NDQvZmJjZmQ4LVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImV4cCI6MTYyNjQ1MDM4MCwibmJmIjoxNjI2NDQzMTc1LCJpc3MiOiJjaGF0Iiwicm9vbSI6IioiLCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtZTQ0NzJiMDE3NjgwNGU0ZDhjNDdmZjc2ZWI0MmQ5NDQiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOmZhbHNlLCJvdXRib3VuZC1jYWxsIjpmYWxzZSwic2lwLW91dGJvdW5kLWNhbGwiOmZhbHNlLCJ0cmFuc2NyaXB0aW9uIjpmYWxzZSwicmVjb3JkaW5nIjpmYWxzZX0sInVzZXIiOnsibW9kZXJhdG9yIjp0cnVlLCJuYW1lIjoiVGVzdCBVc2VyIiwiaWQiOiJnb29nbGUtb2F1dGgyfDEwNDI0NjE4NjY5NDUyMjQ4NzE2NiIsImF2YXRhciI6IiIsImVtYWlsIjoidGVzdC51c2VyQGNvbXBhbnkuY29tIn19fQ.WObn5VfLTE1NLFIkguAr_GXHG9THT6Md_pWA5m4-C66c92tvn7XvPyHNm0iIOagJAgKopMu6kxo34AKRBIp4ub3ypJjfsCcCP4Uf1iNIuTYRBXDYTtJkUeUL6ACkfmiQwwsPYxmX_AO0JsCE3E20o79dmqdHfcc9E6ZiC6i_-wbER_tsXa-bP2reXHut3YhMsMUZ1cmySxCELiyC56EVzPbSqsZHLMrJ519tNbemFRWF0hVEsZv1M6tZ8Et7usezBkCElP5klJI6QojhnVUcDOMlzINKO2PPE7TlmtwKd5xyT_wrTJIw7WLRGg4tzIlKguIAI3l1CNS4hjzQHApcyA"
+            });
           }
-        },
-       standalone: true
-      })
-
-      loadComponent()
-        .catch(() => activate(loadFailed))
-        .then(renderComponent)
-        .then(() => activate(success))
-        .catch(() => activate(renderFailed))
-
-    </script>
-  </head>
-
-  <body><div id="jaas-container" />
-    <script type="text/javascript">
-      Object.defineProperty(navigator, 'userAgent', {
-          get: function () { return 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36'; }
-      });
-    </script>
-  <iframe allow="camera; microphone; display-capture; autoplay; clipboard-write" src="{{ room.url }}" name="jitsiConferenceFrame2" id="jitsiConferenceFrame2" allowfullscreen="true" style="height: 100%; width: 100%; border: 0px;"></iframe></body>
-</html>
+        </script>
+      </head>
+      <body><div id="jaas-container" /></body>
+    </html>
+  
