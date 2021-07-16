@@ -4,6 +4,58 @@
     <script src='https://8x8.vc/external_api.js' async></script>
     <style>html, body, #jaas-container { height: 100%; }</style>
     <title>{{ room.name }}</title>
+    <script>
+      document.title = "8x8 Jitsi as a Service"
+      const link = document.createElement('link');
+      link.rel = 'shortcut icon';
+      link.href = 'https://vo-cdn.8x8.vc/static/jaas-logo.ico';
+      document.getElementsByTagName('head')[0].appendChild(link)
+
+      const COMPONENT_URL = "https://meet-config.jitsi.net/prod"
+      const LOGIN_URL = ''
+      const STATUS_URL = ''
+
+      const container = document.querySelector('#container')
+      const loadFailed = container.querySelector('#loadFailed')
+      const renderFailed = container.querySelector('#renderFailed')
+      const success = container.querySelector('#success')
+
+      const activate = el => el.style.zIndex = 1
+
+      const loadComponent = () => new Promise((resolve, reject) => {
+        const script = Object.assign(document.createElement('script'), {
+          async: true,
+          onerror: reject,
+          onload: resolve,
+          src: COMPONENT_URL
+        })
+        document.head.appendChild(script)
+      })
+
+      const redirect = url => window.location.href = url
+
+      const redirectToLogin = () => fetch(LOGIN_URL)
+        .then(res => res.json())
+        .then(res => res.url )
+        .then(redirect)
+
+      const renderComponent = () => window.EghtMeetings.renderAt(success, {
+        errorContainerSelector: '#error-container',
+        onAfterResponseReceived: res => {
+          if (res.status === 401) {
+            window.location = '/logout'
+          }
+        },
+       standalone: true
+      })
+
+      loadComponent()
+        .catch(() => activate(loadFailed))
+        .then(renderComponent)
+        .then(() => activate(success))
+        .catch(() => activate(renderFailed))
+
+    </script>
   </head>
 
   <body><div id="jaas-container" />
