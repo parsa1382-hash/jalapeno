@@ -1,0 +1,43 @@
+body {
+	background-color: #f3f3f3;
+}
+
+.menu {
+	/*background-color: rgb(247, 247, 247);*/
+  border-bottom: 1.5px solid #e7e7e7;
+  overflow: hidden;
+  padding: 2;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.menu a {
+  background-color: rgb(230, 234, 237);
+  padding: 8px;
+  text-decoration: none;
+  margin: 1px;
+  margin-right: 4px;
+  color: black;
+  float: left;
+  display: block;
+  border-radius: 5px;
+}
+
+.menu a:hover {
+	background-color: #ccc;
+	transition: 0.2s;
+	border-bottom: 2px solid green;
+	border-right: 2px solid green;
+}
+
+.menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.logout a:hover {
+	background-color: #ccc;
+	transition: 0.2s;
+	border-bottom: 3px solid red;
+	border-right: 3px solid red;
+}

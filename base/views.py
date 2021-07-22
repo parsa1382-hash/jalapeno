@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from .models import Room, Group
-
+from datetime import timedelta
 
 
 
@@ -30,10 +30,6 @@ def check(request):
 
 
 def home(request):
-	if request.method == 'POST':
-			release = request.POST[1]
-			print(release)
-
 	if request.user.is_authenticated:
 
 		rooms = Room.objects.all()

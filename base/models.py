@@ -11,6 +11,7 @@ class Group(models.Model):
 
 class Room(models.Model):
 	name = models.CharField(max_length=300)
+	
 	url = models.URLField(max_length=500)
 	release = models.BooleanField(default = True)
 

@@ -1,10 +1,16 @@
 .log {
-  padding: 20px;
-  margin: auto;
+	position: absolute;
+  padding: 40px;
+  margin: 40px;
   background-color: rgb(240, 244, 247);
-  top: 20%;
+  top: 10%;
+  right: 20%;
+  left: 20%;
 }
 
+body {
+	background-color: #f3f3f3;
+}
 
 .body-login {
 	display: flex;
@@ -14,20 +20,25 @@
 	background-color: rgb(240, 244, 247);
 }
 
+.border {
+	border-radius: 10px;
+	border: 2px;
+}
+
 .log-form {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 10px;
+	padding: 20px;
 }
 
 .log-form input {
 	outline: 0;
 	border: 1px solid rgba(34,36,38,.15);
 	border-radius: .30769231rem;
-	padding: 5px;
+	padding: 10px;
 	width: 100%;
-	margin-bottom: -18px;
+	margin-bottom: -40px;
 	text-align: center;
 }
 
@@ -60,6 +71,10 @@
 	font-size: 18px;
 }
 
+.room a {
+	text-decoration: none;
+}
+
 .t {
 	overflow: hidden;
 	float: right;
@@ -68,4 +83,45 @@
 .btn {
 	display: block;
 	align-items: center;
+}
+
+.menu {
+	/*background-color: rgb(247, 247, 247);*/
+  border-bottom: 1.5px solid #e7e7e7;
+  overflow: hidden;
+  padding: 2;
+  margin-bottom: 20px;
+  padding: 5px;
+  position: relative;
+}
+
+.menu a {
+	background-color: rgb(230, 234, 237);
+	padding: 8px;
+	text-decoration: none;
+	margin: 1px;
+	margin-right: 4px;
+	color: black;
+	float: left;
+  display: block;
+  border-radius: 5px;
+}
+
+.menu a:hover {
+	background-color: #ccc;
+	transition: 0.2s;
+	border-bottom: 2px solid green;
+	border-right: 2px solid green;
+}
+
+.menu a.active {
+	background-color: #4CAF50;
+  color: white;
+}
+
+.logout a:hover {
+	background-color: #ccc;
+	transition: 0.2s;
+	border-bottom: 3px solid red;
+	border-right: 3px solid red;
 }

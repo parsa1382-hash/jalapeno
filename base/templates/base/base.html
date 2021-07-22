@@ -1,5 +1,4 @@
 {% load static %}
-{% get_static_prefix as STATIC_PREFIX %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,57 +12,48 @@
 
 </head>
 <body>
-	<a href="{% url 'logout' %}">logout</a>
+
+	<div class="menu">
+		<a class="active" href="">Room</a>
+		<a href="{% url 'spreedsheet:spreedsheet' %}">Spreedsheet</a>
+		<a href="{% url 'blog:blog' %}">Blog</a>
+		<a class="logout" style="float: right;" href="{% url 'logout' %}">Logout</a>
+	</div>
+
+
 	<div class="container">
-		
 		<div class="rooms">
 			<h3>Welcome to Jalapenos</h3><br>
 
-			
-
 			{% if rooms == "not_allowed" %}
 				you are not allowed
-
 			{% else %}
 
 				{% for room in rooms %}
 
 					{% if user.is_superuser %}
-
 						{% if room.release %}
 							<div class="room">
 								<a href="{% url 'base:room' room.id %}">{{ room }}</a>
-								
+									
 									<div class="form-check form-switch t">
 									  <input onclick="test(room = '{{ room.id }}');" value="{{ room }}" for="{{ room.id }}" name="check" class="form-check-input" type="checkbox" checked>
 									</div>
-								
-								<!--
-								<div class="t">
-									<a class="btn btn-danger" href="{% url 'base:change_release' room.id %}">off</a>
-								</div>-->
 							</div>
-
 
 						{% else %}
 							<div class="room"><a href="{% url 'base:room' room.id %}">{{ room }}</a>
-								<!--
-								<div class="t">
-									<a class="btn btn-success" href="{% url 'base:change_release' room.id %}">on</a>
-								</div>-->
 								<div class="form-check form-switch t">
 								  <input onclick="test(room = '{{ room.id }}');" value="{{ room }}" for="{{ room.id }}" id="{{ room.id }}" class="form-check-input" type="checkbox">
 								</div>
 							</div>
-
-
 						{% endif %}
 
 					{% else %}
-						<div><a class="room" href="{% url 'base:room' room.id %}">{{ room }}</a></div>
-
+						<div class="room"><a href="{% url 'base:room' room.id %}">{{ room }}</a></div>
 					{% endif %}
 					<br>
+
 				{% endfor %}
 			{% endif %}
 			

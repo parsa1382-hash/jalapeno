@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"crossorigin="anonymous" />
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+  <title>{{ post.title }}</title>
+</head>
+<body>
+
+  <div class="menu">
+    <a href="{% url 'base:home' %}">Room</a>
+    <a href="{% url 'spreedsheet:spreedsheet' %}">Spreedsheet</a>
+    <a class="active" href="{% url 'blog:blog' %}">Blog</a>
+    <a class="logout" style="float: right;" href="{% url 'logout' %}">Logout</a>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 card mb-4  mt-3 left  top">
+        <div class="card-body">
+          <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
+          <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+          <p class="card-text ">{{ post.content }}</p>
+          <img src="{{ post.image.url }}">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
