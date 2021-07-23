@@ -4,6 +4,7 @@
 <head>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'spreedsheet/style.css' %}">
+    <script src="{% static 'spreedsheet/script.js' %}"></script>
 	<meta charset="utf-8">
 	<title>Sheet</title>
 </head>
@@ -16,8 +17,67 @@
 	</div>
 
 	<div class="container">
-		<br>
-		<div class="alert alert-danger">This page is developing</div>
+		<div class="row">
+			<div class="col bcol">
+
+				<h6 style="margin: 5px 10px 5px 10px;">To Do<a onclick="showfunc(el = 'task-form-1')"><svg style="float: right;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+			  	<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			  	<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+				</svg></a></h6>
+
+				<form class="task-form" id="task-form-1">
+					<textarea class="form-control" aria-label="With textarea"></textarea>
+					<div class="d-flex mt-2">
+			            <button type="submit" style="margin-right: 2px;padding: 4px;" class="col btn btn-success ">Add</button>
+			            <button onclick="hidefunc(el = 'task-form-1')" type="button" style="margin-left: 2px;padding: 4px;" class="col btn btn-secondary">Cancel</button>
+			          </div><hr>
+				</form>
+
+				{% for i in todo %}
+					<p class="border">{{ i }}</p>
+				{% endfor %}
+			</div>
+
+
+
+			<div class="col bcol">
+				<h6 style="margin: 5px 10px 5px 10px;">In Progress<a onclick="showfunc(el = 'task-form-2')"><svg style="float: right;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+			  	<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			  	<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></a></h6>
+
+			  	<form class="task-form" id="task-form-2">
+					<textarea class="form-control" aria-label="With textarea"></textarea>
+					<div class="d-flex mt-2">
+			            <button type="submit" style="margin-right: 2px;padding: 4px;" class="col btn btn-success ">Add</button>
+			            <button onclick="hidefunc(el = 'task-form-2')" type="button" style="margin-left: 2px;padding: 4px;" class="col btn btn-secondary">Cancel</button>
+			          </div><hr>
+				</form>
+
+				{% for i in in_progress %}
+					<p class="border">{{ i }}</p>
+				{% endfor %}
+			</div>
+
+
+
+			<div class="col bcol">
+				<h6 style="margin: 5px 10px 5px 10px;">Done<a onclick="showfunc(el = 'task-form-3')"><svg style="float: right;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+			  	<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			  	<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></a></h6>
+
+			  	<form class="task-form" id="task-form-3">
+					<textarea class="form-control" aria-label="With textarea"></textarea>
+					<div class="d-flex mt-2">
+			            <button type="submit" style="margin-right: 2px;padding: 4px;" class="col btn btn-success ">Add</button>
+			            <button onclick="hidefunc(el = 'task-form-3')" type="button" style="margin-left: 2px;padding: 4px;" class="col btn btn-secondary">Cancel</button>
+			          </div><hr>
+				</form>
+
+				{% for i in done %}
+					<p class="border">{{ i }}</p>
+				{% endfor %}
+			</div>
+		</div>
 	</div>
 </body>
 </html>

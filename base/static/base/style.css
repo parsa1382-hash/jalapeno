@@ -1,11 +1,17 @@
 .log {
-	position: absolute;
-  padding: 40px;
-  margin: 40px;
+  position: absolute;
+  top: 20%;
+  bottom: 20%;
+  right: 30%;
+  left: 30%;
   background-color: rgb(240, 244, 247);
-  top: 10%;
-  right: 20%;
-  left: 20%;
+}
+
+.login-img {
+	position: relative;
+	align-items: center;
+	height: auto;
+	width: 100%;
 }
 
 body {
@@ -13,10 +19,6 @@ body {
 }
 
 .body-login {
-	display: flex;
-	align-items: center;
-	top: 30px;
-	background: center;
 	background-color: rgb(240, 244, 247);
 }
 
@@ -26,10 +28,9 @@ body {
 }
 
 .log-form {
-	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 20px;
+	padding: 10px 50px 30px 50px;
 }
 
 .log-form input {
@@ -115,7 +116,7 @@ body {
 }
 
 .menu a.active {
-	background-color: #4CAF50;
+	background-color: #00cc00;
   color: white;
 }
 
