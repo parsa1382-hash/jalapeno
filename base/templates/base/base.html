@@ -15,7 +15,7 @@
 
 	<div class="menu">
 		<a class="active" href="">Room</a>
-		<a href="{% url 'spreedsheet:spreedsheet' %}">Spreedsheet</a>
+		<a href="{% url 'spreedsheet:home' %}">Spreedsheet</a>
 		<a href="{% url 'blog:blog' %}">Blog</a>
 		<a class="logout" style="float: right;" href="{% url 'logout' %}">Logout</a>
 	</div>
@@ -34,7 +34,7 @@
 					{% if user.is_superuser %}
 						{% if room.release %}
 							<div class="room">
-								<a href="{% url 'base:room' room.id %}">{{ room }} - online</a>
+								<a href="{% url 'base:room' room.id %}">{{ room }}</a>
 									
 									<div class="form-check form-switch t">
 									  <input onclick="test(room = '{{ room.id }}');" value="{{ room }}" for="{{ room.id }}" name="check" class="form-check-input" type="checkbox" checked>

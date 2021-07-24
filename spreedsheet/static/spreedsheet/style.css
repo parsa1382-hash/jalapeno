@@ -25,7 +25,7 @@ body {
 
 .menu a:hover {
 	background-color: #ccc;
-	transition: 0.2s;
+	transition: .2s cubic-bezier(.3,0,.5,1);
 	border-bottom: 2px solid green;
 	border-right: 2px solid green;
 }
@@ -44,11 +44,14 @@ body {
 
 
 .bcol {
-	border: 2px solid #dee2e6!important;
+	position: relative;
+	border: 1px solid #f5f5f5!important;
 	border-radius: 8px;
 	margin: 10px;
 	padding: 10px;
+	min-width: 300px;
 	background-color: #f5f5f5;
+	box-shadow: 1px 2px 2px 2px rgba(34,36,38,.15);
 }
 
 
@@ -67,3 +70,86 @@ body {
 	display: none;
 	position: relative!important;
 }
+
+
+
+
+.dropbtn {
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	right: 0;
+  display: none;
+  border-radius: 5px;
+  position: absolute;
+  background-color: #fff;
+  min-width: 100px;
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  font-size: 13px;
+  color: black;
+  padding: 5px;
+  margin: 3px;
+  text-decoration: none;
+  display: block;
+}
+
+.dt {
+  font-size: 13px;
+  color: black;
+  padding: 5px;
+  margin: 3px;
+  text-decoration: none;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	border-radius: 4px;
+	background-color: #f3f3f3;
+	color: green;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+.room {
+	box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+	border: 1px solid rgba(34,36,38,.15);
+	background-color: rgb(240, 244, 247);
+	border-radius: .50769231rem;
+	display: block;
+	padding: 15px;
+	width: 100%;
+	font-size: 18px;
+	margin: 10px;
+}
+
+.room a {
+	text-decoration: none;
+}
+
+.svgt {
+	float: right;
+}
+
+.svgt:hover {
+	color: green;
+	transition: .2s cubic-bezier(.3,0,.5,1);
+}
+
+

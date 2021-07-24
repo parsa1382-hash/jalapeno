@@ -15,8 +15,8 @@ class Room(models.Model):
 	url = models.URLField(max_length=500)
 	release = models.BooleanField(default = True)
 
-	users = models.ManyToManyField(User)
-	groups = models.ManyToManyField(Group)
+	users = models.ManyToManyField(User, default = None)
+	groups = models.ManyToManyField(Group, default = None)
 
 	def __str__(self):
 		return self.name
