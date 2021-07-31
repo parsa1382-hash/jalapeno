@@ -10,4 +10,7 @@ urlpatterns = [
 	path('sheet/<str:group>', views.spreedsheet, name='spreedsheet'),
 	path('task/<int:num>/<str:group>', views.task, name='task'),
 	path('change_status/<str:group>/<int:id>/<int:status>', views.change_status, name='change_status'),
+	path('task_delete/<str:group>/<int:id>', views.task_delete, name='task_delete'),
+	path('task_edit/<str:group>/<int:task_id>', views.task_edit, name='task_edit'),
+	path('task_edit_html/<str:group>/<int:task_id>/<str:task_form_id>', views.task_edit_html, name='task_edit_html'),
 ]

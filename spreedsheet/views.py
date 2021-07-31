@@ -12,7 +12,13 @@ def spreedsheet(request, group):
 		in_progress = tasks.filter(status=1)
 		done = tasks.filter(status=2)
 
-		context = {'tasks': tasks, 'todo': todo, 'in_progress': in_progress, 'done': done, 'group': group}
+		context = {
+			'tasks': tasks, 
+			'todo': todo, 
+			'in_progress': in_progress, 
+			'done': done, 'group': group, 
+			'gr': get_object_or_404(Group, id=group)
+			}
 		return render(request, 'spreedsheet/spreedsheet.html', context)
 	else:
 		return redirect('base:login_view')
@@ -38,6 +44,11 @@ def task(request, num, group):
 
 	return	redirect('spreedsheet:spreedsheet', group)
 
+def task_delete(request, group, id):
+	t = get_object_or_404(Task, id=id)
+	t.delete()
+
+	return redirect('spreedsheet:spreedsheet', group)
 
 def change_status(request, group, id, status):
 	t = get_object_or_404(Task, id=id)
@@ -48,7 +59,21 @@ def change_status(request, group, id, status):
 
 	return	redirect('spreedsheet:spreedsheet', group)
 
+def task_edit(request, group, task_id):
+	t = get_object_or_404(Task, id=task_id)
+	t.content = request.POST['textarea']
+	t.save()
 
+	return	redirect('spreedsheet:spreedsheet', group)
 
+def task_edit_html(request, group, task_id, task_form_id):
+	task_id = int(task_id)
+	context = {'task_id': task_id, 
+		'group': group, 
+		'task':get_object_or_404(Task, id=task_id),
+		'task_form_id': task_form_id,
+		}
+
+	return render(request, 'spreedsheet/edit.html', context)
 
 # Create your views here.

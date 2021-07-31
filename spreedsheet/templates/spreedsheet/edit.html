@@ -1,0 +1,11 @@
+
+<form action="{% url 'spreedsheet:task_edit' group task_id %}" method="post" id="task-edit-1">
+	{% csrf_token %}
+	<textarea class="form-control" name="textarea" >{{ task.content }}</textarea>
+	<div class="d-flex mt-2">
+
+        <button onclick="task(num = 0);" style="margin-right: 2px;padding: 4px;font-size: 13px;" class="col btn btn-success ">Save</button>
+
+        <button onclick="hidefunc(el = '{{ task_form_id }}')" type="button" style="margin-left: 2px;padding: 4px;font-size: 13px;" class="col btn btn-secondary">Cancel</button>
+      </div><hr>
+</form>
