@@ -36,44 +36,58 @@ def home(request):
 
 
 def task(request, num, group):
-	content = username = request.POST['textarea']
-	print(group)
+	if request.user.is_authenticated:
+		content = username = request.POST['textarea']
+		print(group)
 
-	t = Task(content=content, updated_on=timezone.now(), group=get_object_or_404(Group, id=group), user=request.user, status=num)
-	t.save()
+		t = Task(content=content, updated_on=timezone.now(), group=get_object_or_404(Group, id=group), user=request.user, status=num)
+		t.save()
 
-	return	redirect('spreedsheet:spreedsheet', group)
+		return	redirect('spreedsheet:spreedsheet', group)
+	else:
+		return redirect('base:login_view')
 
 def task_delete(request, group, id):
-	t = get_object_or_404(Task, id=id)
-	t.delete()
+	if request.user.is_authenticated:
+		t = get_object_or_404(Task, id=id)
+		t.delete()
 
-	return redirect('spreedsheet:spreedsheet', group)
+		return redirect('spreedsheet:spreedsheet', group)
+	else:
+		return redirect('base:login_view')
 
-def change_status(request, group, id, status):
-	t = get_object_or_404(Task, id=id)
-	t.status = status
-	t.updated_on = timezone.now()
+def task_status(request, group, id, status):
+	if request.user.is_authenticated:
+		t = get_object_or_404(Task, id=id)
+		t.status = status
+		t.updated_on = timezone.now()
 
-	t.save()
+		t.save()
 
-	return	redirect('spreedsheet:spreedsheet', group)
+		return	redirect('spreedsheet:spreedsheet', group)
+	else:
+		return redirect('base:login_view')
 
 def task_edit(request, group, task_id):
-	t = get_object_or_404(Task, id=task_id)
-	t.content = request.POST['textarea']
-	t.save()
+	if request.user.is_authenticated:
+		t = get_object_or_404(Task, id=task_id)
+		t.content = request.POST['textarea']
 
-	return	redirect('spreedsheet:spreedsheet', group)
+		t.save()
+
+		return	redirect('spreedsheet:spreedsheet', group)
+	else:
+		return redirect('base:login_view')
 
 def task_edit_html(request, group, task_id, task_form_id):
-	task_id = int(task_id)
-	context = {'task_id': task_id, 
-		'group': group, 
-		'task':get_object_or_404(Task, id=task_id),
-		'task_form_id': task_form_id,
-		}
+	if request.user.is_authenticated:
+		context = {'task_id': task_id, 
+			'group': group, 
+			'task':get_object_or_404(Task, id=task_id),
+			'task_form_id': task_form_id,
+			}
 
-	return render(request, 'spreedsheet/edit.html', context)
-
-# Create your views here.
+		return render(request, 'spreedsheet/edit.html', context)
+		#this function make for ajax and load with js on frontend
+	else:
+		return redirect('base:login_view')
