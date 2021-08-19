@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('base.urls')),
     path('blog/', include('blog.urls')),
     path('spreedsheet/', include('spreedsheet.urls')),
+    path('user/', include('user.urls')),
     path('logout/', auth_views.LogoutView.as_view(template_name='base/login.html'), name='logout'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

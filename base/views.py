@@ -7,9 +7,15 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from .models import Room, Group
+from spreedsheet.models import Task
 from datetime import timedelta
 
-
+def utc(request):
+	user_tasks = Task.objects.filter(user=request.user)
+	ut = 0
+	for i in user_tasks:
+		ut += 1
+	return ut
 
 def login_view(request):
 	return render(request, 'base/login.html')
@@ -64,6 +70,7 @@ def home(request):
 		context = {
 			'rooms': allowed_room,
 			'user':user,
+			'ut': utc(request),
 		}
 		return render(request, 'base/base.html', context)
 	else:
@@ -74,7 +81,7 @@ def home(request):
 def room(request, room_id):
 	if request.user.is_authenticated:
 		room = get_object_or_404(Room, pk=room_id)
-		return render(request, 'base/room.html', {'room': room})
+		return render(request, 'base/room.html', {'room': room, 'ut': utc(request),})
 	else:
 		return render(request, 'base/login.html')
 

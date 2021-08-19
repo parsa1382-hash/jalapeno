@@ -3,6 +3,12 @@ from .models import Task
 from base.models import Group
 from django.utils import timezone
 
+def utc(request):
+	user_tasks = Task.objects.filter(user=request.user)
+	ut = 0
+	for i in user_tasks:
+		ut += 1
+	return ut
 
 def spreedsheet(request, group):
 	if request.user.is_authenticated:
@@ -12,12 +18,14 @@ def spreedsheet(request, group):
 		in_progress = tasks.filter(status=1)
 		done = tasks.filter(status=2)
 
+
 		context = {
 			'tasks': tasks, 
-			'todo': todo, 
+			'todo': todo,
 			'in_progress': in_progress, 
 			'done': done, 'group': group, 
-			'gr': get_object_or_404(Group, id=group)
+			'gr': get_object_or_404(Group, id=group),
+			'ut': utc(request),
 			}
 		return render(request, 'spreedsheet/spreedsheet.html', context)
 	else:
@@ -26,9 +34,12 @@ def spreedsheet(request, group):
 
 def home(request):
 	if request.user.is_authenticated:
+
 		context = {
-			'groups': Group.objects.filter(members = request.user).order_by('-name')
+			'groups': Group.objects.filter(members = request.user).order_by('-name'),
+			'ut': utc(request),
 		}
+		
 
 		return render(request, 'spreedsheet/home.html', context)
 	else:

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'base.apps.BaseConfig',
     'blog.apps.BlogConfig',
     'spreedsheet.apps.SpreedsheetConfig',
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
