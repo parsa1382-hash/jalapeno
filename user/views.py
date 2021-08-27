@@ -2,16 +2,19 @@ from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
+from spreedsheet.models import Task
 
 def login_view(request):
 	return render(request, 'user/login.html')
 
 def profile(request):
 	if request.user.is_authenticated:
-		sells = Sell.objects.all()
 
+		tasks = Task.objects.filter(user=request.user)
+		len_tasks = len(tasks)
 		context = {
-			'sells': sells,
+			'tasks': tasks,
+			'len_tasks': len_tasks,
 		}
 		return render(request, 'user/profile.html', context)
 	else:
